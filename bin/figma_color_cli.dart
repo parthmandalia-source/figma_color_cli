@@ -248,7 +248,7 @@ Future<void> handleTranslateArb() async {
 Future<String> translateText(String text, String targetLang) async {
   try {
     final response = await http.post(
-      Uri.parse("https://translate.argosopentech.com/translate"),
+      Uri.parse("https://translate.astian.org/translate"),
       headers: {
         "Content-Type": "application/json",
       },
