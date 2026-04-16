@@ -236,14 +236,17 @@ Future<void> handleTranslateArb() async {
     );
   }
 
-  final outputFile = File("lib/l10n/$langCode.arb");
+  final sourceDir = sourceFile.parent.path;
+
+  final outputFile = File("$sourceDir/$langCode.arb");
 
   outputFile.createSync(recursive: true);
 
   outputFile.writeAsStringSync(
     const JsonEncoder.withIndent('  ').convert(translatedMap),
   );
-  print("✅ Translation completed → lib/l10n/$langCode.arb");
+
+  print("✅ Translation completed → ${outputFile.path}");
 }
 
 Future<String> translateText(String text, String targetLang) async {
