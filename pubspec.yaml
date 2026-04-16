@@ -1,6 +1,6 @@
 name: figma_color_cli
 description: Convert Figma HEX colors into Flutter AppColor constants automatically.
-version: 1.0.2
+version: 1.1.1
 homepage: https://github.com/parthmandalia-source/figma_color_cli
 repository: https://github.com/parthmandalia-source/figma_color_cli
 
@@ -12,6 +12,7 @@ executables:
 # Add regular dependencies here.
 dependencies:
   path: ^1.9.1
+  http: ^1.2.1
 
 dev_dependencies:
   lints: ^6.1.0

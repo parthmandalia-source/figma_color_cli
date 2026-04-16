@@ -1,29 +1,52 @@
 # 🎨 Figma Color CLI
 
+> A powerful Flutter utility CLI to generate **App Colors**, **ARB Localization Strings**, and **Translate ARB files** instantly from terminal.
+
 [![pub package](https://img.shields.io/pub/v/figma_color_cli.svg)](https://pub.dev/packages/figma_color_cli)
-[![likes](https://img.shields.io/pub/likes/figma_color_cli)](https://pub.dev/packages/figma_color_cli/score)
-[![popularity](https://img.shields.io/pub/popularity/figma_color_cli)](https://pub.dev/packages/figma_color_cli/score)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
-Convert **Figma HEX colors** into **Flutter AppColor constants** instantly from terminal 🚀
-
-Perfect for Flutter developers who frequently copy colors from Figma and want to generate clean `app_color.dart` files automatically.
+[![likes](https://img.shields.io/pub/likes/figma_color_cli)](https://pub.dev/packages/figma_color_cli)
+[![popularity](https://img.shields.io/pub/popularity/figma_color_cli)](https://pub.dev/packages/figma_color_cli)
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-- 🎯 Convert HEX → Flutter `Color()` format
-- 📁 Auto-generate `app_color.dart`
-- ♻️ Replace or append to existing color file
-- 🚫 Prevent duplicate color entries
-- 🌈 Supports opacity HEX (`#254C8280`)
-- 🖥 Beautiful CLI interface
-- ⚡ Lightweight and dependency-free
+### 🎨 App Color Generator
+Convert HEX colors into Flutter `AppColor` constants.
+
+### 🌍 ARB String Generator
+Generate localization keys/values into `en.arb`.
+
+### 🔄 ARB Translator
+Translate existing `en.arb` into:
+
+- Hindi
+- French
+- Spanish
+- German
+- Dutch
+- Italian
+- Portuguese
+- Russian
+- Arabic
+- Japanese
+- Korean
+- Chinese
+- Turkish
+- Polish
+- Thai
+
+### ⚙️ Auto Localization Generation
+Automatically runs:
+
+```bash
+flutter gen-l10n
+```
+
+after ARB updates.
 
 ---
 
-## 📦 Installation
+# 📦 Installation
 
 Activate globally:
 
@@ -33,89 +56,164 @@ dart pub global activate figma_color_cli
 
 ---
 
-## 🚀 Usage
+# 🚀 Usage
 
-Run command:
+Run:
 
 ```bash
-figma-color "#254C82 #FFFFFF #254C8280"
+figma-color init
 ```
 
 ---
 
-## 💡 Demo
+# 🖥️ CLI Menu
 
-### Input:
-
-```bash
-figma-color "#254C82 #FFFFFF"
-```
-
-### CLI Output:
-
-```bash
+```text
 ╔══════════════════════════════════════╗
-║        🎨 FIGMA COLOR CLI v1.0       ║
+║        Select Generator Type         ║
 ╠══════════════════════════════════════╣
-║  Convert Figma HEX → Flutter Color   ║
+║  [1] 🎨 Generate App Colors          ║
+║  [2] 🌍 Generate ARB Strings         ║
+║  [3] 🔄 Translate Existing ARB       ║
 ╚══════════════════════════════════════╝
 ```
 
 ---
 
-## 📂 Generated Output
+# 🎨 Color Generator Example
 
-Creates:
+### Input:
+
+```text
+#254C82 #FFFFFF #00000080
+```
+
+### Output:
 
 ```dart
-import 'package:flutter/material.dart';
-
 class AppColor {
   static const Color k254C82 = Color(0xFF254C82);
   static const Color kFFFFFF = Color(0xFFFFFFFF);
+  static const Color k00000080 = Color(0x80000000);
 }
 ```
 
 ---
 
-## 🛠 Example Workflow
+# 🌍 ARB Generator Example
 
-### 1. Copy colors from Figma:
+### Input Text:
 
 ```text
-#254C82
-#FFFFFF
-#000000
+Cancel Your Plan?
+
+Update Profile
+
+Delete Account
 ```
 
-### 2. Run CLI:
+### Output `en.arb`:
 
-```bash
-figma-color "#254C82 #FFFFFF #000000"
+```json
+{
+  "cancelYourPlan": "Cancel Your Plan?",
+  "updateProfile": "Update Profile",
+  "deleteAccount": "Delete Account"
+}
 ```
-
-### 3. Done 🎉
 
 ---
 
-## 📈 Versioning
+# 🔄 Translation Example
 
-Current Version:
+### Source `en.arb`
+
+```json
+{
+  "deleteAccount": "Delete Account"
+}
+```
+
+### Hindi Output `hi.arb`
+
+```json
+{
+  "deleteAccount": "खाता हटाएं"
+}
+```
+
+---
+
+# 📁 Default Output Paths
+
+| Feature | Default Path |
+|--------|-------------|
+| App Colors | `lib/utils/app_color.dart` |
+| ARB Strings | `lib/l10n/en.arb` |
+| Translations | `lib/l10n/{lang}.arb` |
+
+---
+
+# ⚠️ Flutter Localization Setup
+
+Ensure your Flutter project has this in **pubspec.yaml**:
 
 ```yaml
-1.0.1
+flutter:
+  generate: true
 ```
 
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-Feel free to fork and submit PRs.
+Required for `flutter gen-l10n`.
 
 ---
 
-## 📄 License
+# 🛠 Supported Languages
 
-MIT License © 2026 Parth Mandalia
+| Code | Language |
+|------|---------|
+| hi | Hindi |
+| fr | French |
+| es | Spanish |
+| de | German |
+| nl | Dutch |
+| it | Italian |
+| pt | Portuguese |
+| ru | Russian |
+| ar | Arabic |
+| ja | Japanese |
+| ko | Korean |
+| zh | Chinese |
+| tr | Turkish |
+| pl | Polish |
+| th | Thai |
+
+---
+
+# 💡 Why Use Figma Color CLI?
+
+Stop wasting time:
+
+- Copying HEX manually
+- Writing ARB keys manually
+- Translating files manually
+- Running gen-l10n manually
+
+Automate everything in seconds ⚡
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+Feel free to open issues or PRs.
+
+---
+
+# 📄 License
+
+MIT License
+
+---
+
+Made with ❤️ for Flutter Developers
