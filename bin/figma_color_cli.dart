@@ -238,34 +238,30 @@ Future<void> handleTranslateArb() async {
 
   final outputFile = File("lib/l10n/$langCode.arb");
 
+  outputFile.createSync(recursive: true);
+
   outputFile.writeAsStringSync(
     const JsonEncoder.withIndent('  ').convert(translatedMap),
   );
-
   print("✅ Translation completed → lib/l10n/$langCode.arb");
 }
 
 Future<String> translateText(String text, String targetLang) async {
   try {
-    final response = await http.post(
-      Uri.parse("https://translate.astian.org/translate"),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: jsonEncode({
-        "q": text,
-        "source": "en",
-        "target": targetLang,
-        "format": "text",
-      }),
+    final uri = Uri.parse(
+      'https://translate.googleapis.com/translate_a/single'
+          '?client=gtx'
+          '&sl=en'
+          '&tl=$targetLang'
+          '&dt=t'
+          '&q=${Uri.encodeComponent(text)}',
     );
 
-    print("STATUS: ${response.statusCode}");
-    print("BODY: ${response.body}");
+    final response = await http.get(uri);
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return data["translatedText"] ?? text;
+      final body = jsonDecode(response.body);
+      return body[0][0][0];
     }
 
     return text;
