@@ -1,4 +1,4 @@
-## 1.1.3
+## 1.1.5
 
 ### Added
 - Added ARB translation support for 15 languages
